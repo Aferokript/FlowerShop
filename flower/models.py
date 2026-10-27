@@ -23,6 +23,7 @@ class Order(models.Model):
     last_name = models.CharField(max_length=30, verbose_name="Фамилия")
     email = models.EmailField(unique=True, verbose_name="Эл.Почта")
     phone_number = PhoneNumberField(verbose_name="Телефон")
+    bouquet = models.ForeignKey(Bouquet, related_name="orders", verbose_name="Букет", on_delete=models.CASCADE)
     amount = models.IntegerField()
 
     class Meta:
@@ -30,14 +31,7 @@ class Order(models.Model):
         verbose_name_plural = "Заказы"
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
-
-
-class OrderItems(models.Model):
-    order = models.ForeignKey(Order, related_name="items", verbose_name="Букет", on_delete=models.CASCADE)
-    product = models.ForeignKey(Bouquet, related_name='bouquet_items', on_delete=models.CASCADE, verbose_name="Букет")
-    quantity = models.PositiveIntegerField(db_index=True, verbose_name="Количество")
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+        return f"{self.first_name} {self.last_name} {self.bouquet}"
 
 
 class Consultation(models.Model):
