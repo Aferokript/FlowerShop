@@ -23,7 +23,9 @@ class Order(models.Model):
     last_name = models.CharField(max_length=30, verbose_name="Фамилия")
     email = models.EmailField(unique=True, verbose_name="Эл.Почта")
     phone_number = PhoneNumberField(verbose_name="Телефон")
-    bouquet = models.ForeignKey(Bouquet, related_name="orders", verbose_name="Букет", on_delete=models.CASCADE)
+    bouquet = models.ForeignKey(Bouquet, related_name="orders",
+                                verbose_name="Букет",
+                                on_delete=models.CASCADE)
     amount = models.IntegerField()
 
     class Meta:

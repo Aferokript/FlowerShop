@@ -5,6 +5,7 @@ from django.urls import path
 
 from flower import views
 
-urlpatterns = [path("", views.index, name="index"), path("admin/", admin.site.urls)] + static(
+urlpatterns = [path("", views.index, name="index"),
+               path("admin/", admin.site.urls)] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
 )
